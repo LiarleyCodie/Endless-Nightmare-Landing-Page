@@ -22,12 +22,24 @@ body {
   background-blend-mode: overlay;
   background-position: center;
   background-size: cover 100%;
+  overflow: hidden;
 
+  display: grid;
+}
+
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
+  animation: zoomOff 2s ease backwards;
+}
+
+@keyframes zoomOff {
+  from {
+    transform: scale(150%);
+  }
 }
 
 h3 {
@@ -40,24 +52,28 @@ h3 > span {
   animation: fallDownLetter 0.5s ease backwards paused;
 }
 
-@keyframes fallDownLetter {
-  from {
-    opacity: 0;
-    transform: translateY(-20%);
-  }
-}
-
 h1 {
   font-size: 6.4rem;
   font-family: "Emilys Candy", cursive;
   font-weight: 400;
   color: var(--orange);
-  text-align: center;;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+h1 > span {
+  visibility: hidden;
+  animation: bounceInLetter 1s cubic-bezier(.47,2,.41,.8) backwards paused;
 }
 
 p {
   font-size: 2rem;
   color: rgba(255,255,255, 0.7);
+}
+
+p > span {
+  visibility: hidden;
+  animation: 1s ease backwards paused;
 }
 
 div {
@@ -76,6 +92,7 @@ div > a {
   height: 4.8rem;
   font-size: 2rem;
   transition: background 150ms ease, color 150ms ease;
+  visibility: hidden;
 }
 
 div > a:nth-child(1) {
@@ -99,3 +116,43 @@ div > a:nth-child(2):hover {
 }
 
 /* Animations */
+@keyframes fallDownLetter {
+  from {
+    opacity: 0;
+    transform: translateY(-20%);
+  }
+}
+
+@keyframes bounceInLetter {
+  from {
+    transform: scale(0) rotate(-30deg) rotateX(-90deg);
+  }
+}
+
+@keyframes fallRotatingRightDownLetter {
+  from {
+    opacity: 0;
+    transform: translateY(-20%) translateX(-70%) rotateY(-90deg);
+  }
+}
+
+@keyframes fallRotatingRightUpLetter {
+  from {
+    opacity: 0;
+    transform: translateY(-20%) translateX(70%) rotateZ(90deg);
+  }
+}
+
+@keyframes fallRotatingDownLetter {
+  from {
+    opacity: 0;
+    transform: translateY(-20%) rotateY(90deg);
+  }
+}
+
+@keyframes fallRotatingUpLetter {
+  from {
+    opacity: 0;
+    transform: translateY(20%) rotate(35deg);
+  }
+}
